@@ -10,7 +10,19 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.bishe.online.examination</groupId>
     <artifactId>online-examination</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
     <url>https://github.com/shared-code-development/online-examination</url>
+    <licenses>
+        <license>
+            <name>Apache 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <modules>
+        <module>exam-center-registry</module>
+    </modules>
 
     <properties>
         <version.build.java>1.8</version.build.java>
@@ -21,6 +33,9 @@
         <version.druid>1.1.5</version.druid>
         <version.jedis>2.9.0</version.jedis>
         <version.hsy.java>1.0</version.hsy.java>
+        <version.fastjson>1.2.54</version.fastjson>
+        <version.spring.cloud>Finchley.RELEASE</version.spring.cloud>
+        <version.maven.deploy.plugin>2.8.2</version.maven.deploy.plugin>
     </properties>
 
     <dependencies>
@@ -65,6 +80,23 @@
         </dependency>
     </dependencies>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${version.spring.cloud}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${version.fastjson}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -92,6 +124,26 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${version.maven.deploy.plugin}</version>
+            </plugin>
+            <!--搞明白这个是干嘛的-->
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+-->
         </plugins>
     </build>
 </project>
