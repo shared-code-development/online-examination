@@ -1,0 +1,24 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: exam-center-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/shared-code-development/online-examination.git
+          search-paths: exam-config-repo
+          username:
+          password:
+          force-pull: true
+      label: master
+    #rabbitmq:
+    # host: 192.168.175.128
+    #port: 5672
+    #username: admin
+    # password: admin
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

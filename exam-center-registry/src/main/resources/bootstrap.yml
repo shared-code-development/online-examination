@@ -1,0 +1,15 @@
+spring:
+    application:
+        name: exam-center-registry
+
+server:
+    port: 8761 #启动端口
+
+eureka:
+  server:
+    enable-self-preservation: false # 由于很容易出发eureka server自我保护机制，使得注册中心的服务不能够正常下线，关闭自我保护机制，以确保注册中心可以将不可用的服务正确剔除
+  client:
+    registerWithEureka: false  #false:不作为一个客户端注册到注册中心
+    fetchRegistry: false      #为true时，可以启动，但报异常：Cannot execute request on any known server 由于注册中心的作用就是维护服务实例，他并不需要去检索服务，所以设置为false
+#    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
